@@ -22,7 +22,13 @@
 
 sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
-sed -i 's|https://git.openwrt.org/project/luci.git|https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
+# Step 1: 注释掉原来的 luci 源
+sed -i 's|^src-git luci https://git.openwrt.org/project/luci.git|#src-git luci https://git.openwrt.org/project/luci.git|' feeds.conf.default
+
+# Step 2: 添加新的 luci 源，指定 openwrt-23.05 分支
+echo 'src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05' >> feeds.conf.default
+
+
 ./scripts/feeds update -a && rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
 rm -rf feeds/packages/utils/v2dat
