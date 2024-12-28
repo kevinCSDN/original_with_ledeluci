@@ -67,6 +67,13 @@ jobs:
 
     - name: 安装源
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: Copy fullconenat module from lede repo
+      run: |
+        # 从 lede 仓库中拉取 fullconenat 模块并复制到 OpenWrt 源码中
+        git clone https://github.com/coolsnowwolf/lede.git
+        cp -r lede/package/network/services/fullconenat openwrt/package/network/services/fullconenat
+        rm -rf lede
       
     - name: 加载自定义设置和调整配置
       run: |
