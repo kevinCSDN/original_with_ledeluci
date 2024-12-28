@@ -109,6 +109,13 @@ jobs:
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
+
+    - name: Copy fullconenat module from lede repo
+      run: |
+        # 从 lede 仓库中拉取 fullconenat 模块并复制到 OpenWrt 源码中
+        git clone https://github.com/coolsnowwolf/lede.git
+        cp -r lede/package/network/services/fullconenat openwrt/package/network/services/fullconenat
+        rm -rf lede
         
     - name: Load custom feeds
       run: |
