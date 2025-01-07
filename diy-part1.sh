@@ -74,11 +74,11 @@ rm -rf feeds/luci/themes/luci-theme-BootstrapDark
 rm -rf feeds/luci/themes/luci-theme-BootstrapLight
 
 # 克隆其他必要插件
-git clone https://github.com/haiibo/openwrt-packages
-shopt -s extglob
-rm -rf openwrt-packages/!(luci-app-netdata|luci-app-smartdns|luci-app-upnp)
-cp -r openwrt-packages/{luci-app-netdata,luci-app-smartdns,luci-app-upnp} package/
-rm -rf openwrt-packages
+#git clone https://github.com/haiibo/openwrt-packages
+#shopt -s extglob
+#rm -rf openwrt-packages/!(luci-app-netdata|luci-app-smartdns|luci-app-upnp)
+#cp -r openwrt-packages/{luci-app-netdata,luci-app-smartdns,luci-app-upnp} package/
+#rm -rf openwrt-packages
 
 # 修改默认 IP 和主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
